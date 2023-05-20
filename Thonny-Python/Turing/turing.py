@@ -12,7 +12,7 @@ io_leds = led_array(io_led_pin_numbers)
 segment = seven_segment(segment_pin_numbers)
 #inpurt
 io_leds.set(0)
-segment.set(1)
+segment.set_number(1)
 
 
 
