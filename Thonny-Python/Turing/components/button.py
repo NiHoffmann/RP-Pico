@@ -4,13 +4,13 @@ class button:
     pin = None
     
     def __init__(self, pin_number):
-        self.pin = machine.Pin(pin, machine.Pin.IN, machine.Pin.PULL_DOWN)
+        self.pin = machine.Pin(pin_number, machine.Pin.IN, machine.Pin.PULL_DOWN)
         
-    def wait_for_press():
+    def wait_for_pressed(self):
         while(not self.pin.value()):
             pass
 
-    def pressed():
+    def pressed(self):
         return self.pin.value()
     
 
