@@ -15,9 +15,6 @@ class tupel:
                           #value#state#tape#state
     transition_functions = [['0','Q0','>','1','Q0'],
                            ['1','Q0','-','0','Q1']]
-    
-    def __init__(self):
-        pass
 
 class turing_machine:
     tape = tape()
