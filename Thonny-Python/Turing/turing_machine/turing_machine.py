@@ -24,21 +24,36 @@ class tupel:
                             ['1','Q2','<','1','Q2'],
                             ['0','Q2','<','0','Q2'],
                             ['□','Q2','>','□','Q3']]
+    
+    def __init__(self, alphabet_symbols,blank_symbol,input_symbols,states,initial_state,accepting_states,transition_functions):
+        self.alphabet_symbols = alphabet_symbols
+        self.blank_symbol = blank_symbol
+        self.input_symbols = input_symbols
+        self.states = states
+        self.initial_state = initial_state
+        self.accepting_states = accepting_states
+        self.transition_functions = transition_functions    
 
 class turing_machine:
-    tape = tape()
-    tupel = tupel()
+    tape = None
+    tupel = None
     programm_counter = 0
-    current_state = tupel.initial_state
+    current_state = None
 
-    def __init__(self, input):
+    def __init__(self, input, tupel):
         for i in range(len(input)):
             self.tape.right[i] = input[i]
+        self.tupel = tupel
+        self.current_state = tupel.initial_state
     
-    def apply_transition_function(self):
+    def apply_transition_function(self, length = 128):
         #decide which side of the tape to look at
         pc = self.programm_counter
         tp = self.tape.right
+        self.tupel = tupel
+        self.tape.left = [tupel.blank_symbol]*(length/2)
+        self.tape.right = [tupel.blank_symbol]*((length/2)+length%2)
+        
         if self.programm_counter < 0 :
             pc = abs(self.programm_counter)-1
             tp = self.tape.left
@@ -75,3 +90,4 @@ class turing_machine:
                 self.programm_counter += 1
             self.programm_counter = pc            
         return return_value
+    

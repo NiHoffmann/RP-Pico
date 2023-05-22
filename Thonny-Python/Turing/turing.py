@@ -9,6 +9,7 @@ from components.led_array import led_array
 from components.seven_segment import seven_segment
 from components.button import button
 from turing_machine.turing_machine import turing_machine
+from turing_machine.turing_machine import interpreter
 
 io_leds = led_array(io_led_pin_numbers)
 segment = seven_segment(segment_pin_numbers)
@@ -21,6 +22,7 @@ button_left = button(button_left_number)
 button_right = button(button_right_number)
 
 t_machine = None
+t_tupel = load_data_from_file()
 
 def intToBinaryTape(value, length):
     tape = ['0']*length
@@ -46,7 +48,7 @@ def binaryTapeToInt(tape):
 #button_right is next value
 #button_left is confirm input
 def machine_input_loop():
-    global t_machine
+    global t_machine, t_tupel
     
     input_length = len(io_led_pin_numbers)
     turing_machine_input = 0
@@ -65,7 +67,7 @@ def machine_input_loop():
         #input was confirmed
         else:
             #initialize turing machine with given input
-            t_machine = turing_machine(intToBinaryTape(turing_machine_input, input_length))
+            t_machine = turing_machine(intToBinaryTape(turing_machine_input, input_length), t_tupel)
             return 
 
 def machine_running_loop():
