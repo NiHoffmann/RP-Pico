@@ -62,7 +62,7 @@ def machine_input_loop():
                 turing_machine_input %= (2**input_length)
                 io_leds.set(turing_machine_input)
                 
-                #300000us feel nice
+                #250000us feel nice
                 utime.sleep_us(250000)
         #input was confirmed
         else:
