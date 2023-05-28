@@ -1,4 +1,5 @@
 class tape:
+    #place holder this is what a tape could look like
     left = ['□']
     right = ['□']
     
@@ -7,11 +8,10 @@ class tape:
         self.right = [blank]*length
 
 class tupel:
+    #Example Tupel for increment turing machine
     alphabet_symbols = ['0','1','□']
     blank_symbol = '□'
     input_symbols = ['0','1']
-
-    #this can be configured
     states = ['Q0','Q1','Q2','Q3']
     initial_state = 'Q0'
     accepting_states = ['Q3']
@@ -25,7 +25,15 @@ class tupel:
                             ['0','Q2','<','0','Q2'],
                             ['□','Q2','>','□','Q3']]
     
-    def __init__(self, alphabet_symbols,blank_symbol,input_symbols,states,initial_state,accepting_states,transition_functions):
+    def __init__(self
+                 ,alphabet_symbols = ['0','1','□']
+                 ,blank_symbol = '□'
+                 ,input_symbols = ['0','1']
+                 ,states = ['Q0']
+                 ,initial_state = 'Q0'
+                 ,accepting_states = []
+                 ,transition_functions = [[]]
+                 ):
         self.alphabet_symbols = alphabet_symbols
         self.blank_symbol = blank_symbol
         self.input_symbols = input_symbols
@@ -35,24 +43,27 @@ class tupel:
         self.transition_functions = transition_functions    
 
 class turing_machine:
-    tape = None
-    tupel = None
+    tape = tape()
+    tupel = tupel()
     programm_counter = 0
     current_state = None
 
-    def __init__(self, input, tupel):
+    def __init__(self, input, tupel, length = 128):
+        
+        self.tupel = tupel
+        #modulo makes sure tape is specified length
+        self.tape.left = [tupel.blank_symbol]*(int (length/2))
+        self.tape.right = [tupel.blank_symbol]*((int (length/2))+length%2)
+        
         for i in range(len(input)):
             self.tape.right[i] = input[i]
         self.tupel = tupel
         self.current_state = tupel.initial_state
     
-    def apply_transition_function(self, length = 128):
+    def apply_transition_function(self):
         #decide which side of the tape to look at
         pc = self.programm_counter
         tp = self.tape.right
-        self.tupel = tupel
-        self.tape.left = [tupel.blank_symbol]*(length/2)
-        self.tape.right = [tupel.blank_symbol]*((length/2)+length%2)
         
         if self.programm_counter < 0 :
             pc = abs(self.programm_counter)-1
@@ -90,4 +101,3 @@ class turing_machine:
                 self.programm_counter += 1
             self.programm_counter = pc            
         return return_value
-    
