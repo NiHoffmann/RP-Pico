@@ -4,8 +4,9 @@ class tape:
     right = ['□']
     
     def __init__(self,blank='□',length=256):
-        self.left = [blank]*length
-        self.right = [blank]*length
+        #modulo makes sure tape is specified length     
+        self.left = [blank]*(int (length/2))
+        self.right = [blank]*length*((int (length/2))+length%2)
 
 class tupel:
     #Example Tupel for increment turing machine
@@ -48,17 +49,17 @@ class turing_machine:
     programm_counter = 0
     current_state = None
 
-    def __init__(self, input, tupel, length = 128):
-        
-        self.tupel = tupel
-        #modulo makes sure tape is specified length
-        self.tape.left = [tupel.blank_symbol]*(int (length/2))
-        self.tape.right = [tupel.blank_symbol]*((int (length/2))+length%2)
-        
-        for i in range(len(input)):
-            self.tape.right[i] = input[i]
-        self.tupel = tupel
-        self.current_state = tupel.initial_state
+    def __init__(self, input=[], tupel=None, length=None):
+        if tupel is not None:
+            self.tupel = tupel
+        if length is not None:
+            self.tape = tape(self.tupel.blank_symbol,length)
+        #input always beginning of right tape
+        if(len(input) <= len(self.tape.right)):
+            for i in range(len(input)):
+                self.tape.right[i] = input[i]
+
+        self.current_state = self.tupel.initial_state
     
     def apply_transition_function(self):
         #decide which side of the tape to look at

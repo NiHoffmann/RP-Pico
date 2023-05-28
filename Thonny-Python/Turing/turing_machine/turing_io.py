@@ -1,7 +1,7 @@
 import json
-from turing_machine import tupel
+from turing_machine.turing_machine import tupel
    
-class file_reader:
+class turing_file_reader:
     def load_data_from_file() :
         with open('../rules', 'r', encoding='utf-8') as file:
             data = json.load(file)
@@ -13,7 +13,6 @@ class file_reader:
                       accepting_states     = data.get("accepting_states"),
                       transition_functions = data.get("transition_functions")
                       )
-            print(data)
             return t
         return None
 
