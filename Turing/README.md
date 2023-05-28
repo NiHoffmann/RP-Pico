@@ -1,3 +1,4 @@
 # RP-Pico
-Simulating Turingmachine on RP-Pico \r
+Simulating Turingmachine on RP-Pico
+
 Circuite diagram included
