@@ -3,7 +3,7 @@ import utime
 
 
 #____________this class ist not finished______________
-
+#           LCD 1602 with pcf8574 expander
 
 sda = Pin(0, Pin.OPEN_DRAIN)
 scl = Pin(1, Pin.OUT)
