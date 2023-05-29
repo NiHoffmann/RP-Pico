@@ -4,3 +4,6 @@ io_led_pin_numbers = [11,12,13,14,15]
 button_left_number = 2
 button_right_number = 3
 
+LCD_I2C_SDA = 5
+LCD_I2C_SCL = 4
+
