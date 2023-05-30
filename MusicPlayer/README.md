@@ -1,5 +1,5 @@
 # RP-Pico
 
-Music Player
-So far implemented:
+Music Player <\br>
+So far implemented: <\br>
 Volume Knob, Volume Display, Buzzer to Play Tune
