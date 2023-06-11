@@ -12,3 +12,8 @@ lcd_sda_pin_number = 0
 lcd_scl_pin_number = 1
 #no jumpers selected
 lcd_i2c_address = 0x27
+
+joy_stick_vdx_pin = 26
+joy_stick_vdy_pin = 27
+joy_stick_sw_pin = 15
+interrupt_button_pin= 21
